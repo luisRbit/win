@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Compra de Tickets - Caribe Tours</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --azul-caribe: #002e6d;
+      --amarillo-caribe: #ffcc00;
+      --blanco: #ffffff;
+      --gris: #f2f2f2;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--gris);
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: var(--azul-caribe);
+      color: var(--blanco);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo {
+      height: 50px;
+      margin-right: 15px;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    .container {
+      padding: 30px;
+      max-width: 500px;
+      margin: auto;
+      background: var(--blanco);
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-top: 50px;
+    }
+
+    .container h2 {
+      color: var(--azul-caribe);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    input, button {
+      display: block;
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: var(--amarillo-caribe);
+      color: var(--azul-caribe);
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="img/logo-caribe-tours.png" class="logo" alt="Logo Caribe Tours">
+    <h1>Compra de Tickets</h1>
+  </header>
+
+  <div class="container">
+    <h2>Registrar Compra</h2>
+    <form id="compraForm">
+      <input type="text" id="cliente" placeholder="Nombre del Cliente" required>
+      <input type="number" id="precio" placeholder="Precio del Ticket" min="1" required>
+      <button type="submit">Confirmar Compra</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("compraForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const cliente = document.getElementById("cliente").value;
+      const precio = parseFloat(document.getElementById("precio").value);
+      const fecha = new Date().toISOString();
+
+      const ventas = JSON.parse(localStorage.getItem("ventas") || "[]");
+      ventas.push({ cliente, precio, fecha });
+      localStorage.setItem("ventas", JSON.stringify(ventas));
+
+      alert("¡Compra registrada exitosamente!");
+
+      // Redirige al panel de estadísticas
+      window.location.href = "estadisticas.html"; // Asegúrate de que ese sea el nombre correcto
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,513 @@
+
+
+            body{
+            background-image: url('cari5.jpg');
+            background-repeat: no-repeat; /* Evita que la imagen se repita */
+            background-size: cover; /* Hace que la imagen cubra toda la pantalla */
+            background-position: center center; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+              height: 100vh; /* Asegura que ocupe toda la pantalla */
+            margin: 0;
+          }
+          
+
+          .logo {
+            display: block;
+            margin: 10px auto; /* Centrar horizontalmente */
+            width: 250px; /* Ajusta el tamaño según lo necesites */
+            height: auto; /* Mantiene la proporción */
+        }
+        
+            .form-container {
+                text-align: center;
+                display: grid;
+                place-items: center;
+                width: 450px;
+                height: 700px;
+                background-color: #fde409;
+                box-shadow: rgba(243, 255, 6, 0.35) 0px 5px 15px;
+                border-radius: 10px;
+                box-sizing: border-box;
+                padding: 20px 30px;
+                }
+
+
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 35px;
+}
+
+.input {
+  border-radius: 20px;
+  border: 1px solid #f5f2f2;
+  outline: 0 !important;
+  box-sizing: border-box;
+  padding: 12px 15px;
+}
+
+.page-link {
+  text-decoration: underline;
+  margin: 0;
+  text-align: end;
+  color: #fbf9f9;
+  text-decoration-color: #000000;
+}
+
+.page-link-label {
+  cursor: pointer;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.page-link-label:hover {
+  color: #070505;
+}
+
+.form-btn {
+  padding: 10px 15px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  border-radius: 20px;
+  border: 0 !important;
+  outline: 0 !important;
+  background: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  box-shadow: rgba(1, 1, 1, 0.24) 0px 3px 8px;
+  width: 100%;
+}
+.title {
+    text-align: center;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+
+}     
+
+.form-btn:active {
+  box-shadow: none;
+}
+
+.sign-up-label {
+  margin: 1;
+  font-size: 15px;
+  color: #f8f7f7;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.sign-up-link .form-container{
+  
+  width: 350px;
+  height: 550px;
+  background-color: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 11px;
+  box-sizing: border-box;
+  padding: 20px 30px;
+}
+
+
+
+.sub-title {
+  margin: 0;
+  margin-bottom: 5px;
+  font-size: 9px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 15px;
+}
+
+.input {
+  border-radius: 20px;
+  border: 1px solid #000000;
+  outline: 0 !important;
+  box-sizing: border-box;
+  padding: 12px 15px;
+}
+
+.form-btn {
+  padding: 10px 15px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  border-radius: 20px;
+  border: 0 !important;
+  outline: 0 !important;
+  background: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  box-shadow: rgba(243, 243, 243, 0.24) 0px 3px 8px;
+}
+
+.form-btn:active {
+  box-shadow: none;
+}
+
+.sign-up-label {
+  margin: 0;
+  font-size: 10px;
+  color: #000000;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.sign-up-link {
+  margin-left: 1px;
+  font-size: 11px;
+  text-decoration: underline;
+  text-decoration-color: rgb(7, 3, 3);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.buttons-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 20px;
+  gap: 15px;
+}
+
+.apple-login-button,
+    .google-login-button {
+  border-radius: 20px;
+  box-sizing: border-box;
+  padding: 10px 15px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+        rgba(246, 242, 242, 0.06) 0px 0px 0px 1px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 11px;
+  gap: 5px;
+}
+
+.apple-login-button {
+  background-color: #000000;
+  color: #fff;
+  border: 2px solid #fdfafa;
+}
+
+.google-login-button {
+  border: 2px solid #ffffff;
+}
+
+.apple-icon,
+    .google-icon {
+  font-size: 18px;
+  margin-bottom: 1px;
+}
+
+
+
+.buttons-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 20px;
+  gap: 15px;
+}
+
+.apple-login-button,
+    .google-login-button {
+  border-radius: 20px;
+  box-sizing: border-box;
+  padding: 10px 15px;
+  box-shadow: rgba(247, 245, 245, 0.16) 0px 10px 36px 0px,
+        rgba(255, 253, 253, 0.06) 0px 0px 0px 1px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 12px;
+  gap: 15px;
+}
+
+.apple-login-button {
+  background-color: #000000;
+  color: #ffd500;
+  border: 2px solid #f8f5f5;
+}
+
+.google-login-button {
+    background-color: #000000;
+    color: #ffd608;
+  border: 2px solid #ffffff;
+}
+
+.apple-icon,
+    .google-icon {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+
+.btn {
+  display: right;
+  justify-content: right;
+  align-items: right;
+  width: 13rem;
+  overflow: hidden;
+  height: 3rem;
+  background-size: 300% 300%;
+  cursor: pointer;
+  backdrop-filter: blur(1rem);
+  border-radius: 5rem;
+  transition: 0.5s;
+  animation: gradient_301 5s ease infinite;
+  border: double 4px transparent;
+  background-image: linear-gradient(#212121, #212121),
+    linear-gradient(
+      137.48deg,
+      #ffdb3b 10%,
+      #fe53bb 45%,
+      #8f51ea 67%,
+      #0044ff 87%
+    );
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+}
+
+#container-stars {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transition: 0.5s;
+  backdrop-filter: blur(1rem);
+  border-radius: 5rem;
+}
+
+strong {
+  z-index: 2;
+  font-family: "Avalors Personal Use";
+  font-size: 12px;
+  letter-spacing: 5px;
+  color: #ffffff;
+  text-shadow: 0 0 4px white;
+}
+
+#glow {
+  position: absolute;
+  display: flex;
+  width: 12rem;
+}
+
+.circle {
+  width: 100%;
+  height: 30px;
+  filter: blur(2rem);
+  animation: pulse_3011 4s infinite;
+  z-index: -1;
+}
+
+.circle:nth-of-type(1) {
+  background: rgba(254, 83, 186, 0.636);
+}
+
+.circle:nth-of-type(2) {
+  background: rgba(142, 81, 234, 0.704);
+}
+
+.btn:hover #container-stars {
+  z-index: 1;
+  background-color: #212121;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+}
+
+.btn:active {
+  border: double 4px #fe53bb;
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  animation: none;
+}
+
+.btn:active .circle {
+  background: #fe53bb;
+}
+
+#stars {
+  position: relative;
+  background: transparent;
+  width: 200rem;
+  height: 200rem;
+}
+
+#stars::after {
+  content: "";
+  position: absolute;
+  top: -10rem;
+  left: -100rem;
+  width: 100%;
+  height: 100%;
+  animation: animStarRotate 90s linear infinite;
+}
+
+#stars::after {
+  background-image: radial-gradient(#ffffff 1px, transparent 1%);
+  background-size: 50px 50px;
+}
+
+#stars::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 170%;
+  height: 500%;
+  animation: animStar 60s linear infinite;
+}
+
+#stars::before {
+  background-image: radial-gradient(#ffffff 1px, transparent 1%);
+  background-size: 50px 50px;
+  opacity: 0.5;
+}
+
+@keyframes animStar {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-135rem);
+  }
+}
+
+@keyframes animStarRotate {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0);
+  }
+}
+
+@keyframes gradient_301 {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes pulse_3011 {
+  0% {
+    transform: scale(0.75);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+  }
+
+  100% {
+    transform: scale(0.75);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+.loader {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  margin: 130px 0;
+  perspective: 780px;
+}
+
+.text {
+  font-size: 20px;
+  font-weight: 700;
+  color: #cecece;
+  z-index: 10;
+}
+
+.load-inner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border-radius: 50%;
+}
+
+.load-inner.load-one {
+  left: 0%;
+  top: 0%;
+  border-bottom: 3px solid #5c5edc;
+  animation: rotate1 1.15s linear infinite;
+}
+
+.load-inner.load-two {
+  right: 0%;
+  top: 0%;
+  border-right: 3px solid #9147ff;
+  animation: rotate2 1.15s 0.1s linear infinite;
+}
+
+.load-inner.load-three {
+  right: 0%;
+  bottom: 0%;
+  border-top: 3px solid #3b82f6;
+  animation: rotate3 1.15s 0.15s linear infinite;
+}
+
+@keyframes rotate1 {
+  0% {
+    transform: rotateX(45deg) rotateY(-45deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(45deg) rotateY(-45deg) rotateZ(360deg);
+  }
+}
+@keyframes rotate2 {
+  0% {
+    transform: rotateX(45deg) rotateY(45deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(45deg) rotateY(45deg) rotateZ(360deg);
+  }
+}
+@keyframes rotate3 {
+  0% {
+    transform: rotateX(-60deg) rotateY(0deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(-60deg) rotateY(0deg) rotateZ(360deg);
+  }
+}
