@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-5" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estadísticas de Ventas - Caribe Tours</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --azul-caribe: #002e6d;
+      --amarillo-caribe: #ffcc00;
+      --blanco: #ffffff;
+      --gris: #f2f2f2;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--gris);
+    }
+
+    header {
+      background-color: var(--azul-caribe);
+      color: var(--blanco);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .navbar {
+      display: flex;
+      gap: 20px;
+    }
+
+    .navbar a {
+      color: var(--blanco);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .navbar a:hover {
+      text-decoration: underline;
+    }
+
+    .logo {
+      height: 50px;
+    }
+
+    .container {
+      padding: 30px;
+    }
+
+    .controls {
+      margin-bottom: 20px;
+      position: sticky;
+      top: 0;
+      background-color: var(--gris);
+      padding: 10px;
+      z-index: 100;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    select, input[type="month"], input[type="date"], input[type="week"], input[type="number"] {
+      padding: 10px;
+      font-size: 16px;
+      margin-right: 10px;
+    }
+
+    .card {
+      background: var(--blanco);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .card h2 {
+      color: var(--azul-caribe);
+    }
+
+    .card p {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--amarillo-caribe);
+    }
+
+    button {
+      background-color: var(--amarillo-caribe);
+      color: var(--azul-caribe);
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    canvas {
+      margin-top: 40px;
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    #formulario-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #formulario {
+      background: var(--blanco);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      width: 300px;
+    }
+
+    #formulario h3 {
+      margin-bottom: 15px;
+      color: var(--azul-caribe);
+    }
+
+    #formulario input {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 8px;
+      font-size: 16px;
+    }
+
+    #tabla-ventas {
+      margin-top: 30px;
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    #tabla-ventas table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    #tabla-ventas th, #tabla-ventas td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+
+    #tabla-ventas th {
+      background-color: var(--azul-caribe);
+      color: var(--blanco);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="img/logo-caribe-tours.png" alt="Logo" class="logo">
+    <h1>Panel de Ventas de Tickets</h1>
+    <nav class="navbar">
+      <a href="#" onclick="cambiarVista('dia')">Día</a>
+      <a href="#" onclick="cambiarVista('semana')">Semana</a>
+      <a href="#" onclick="cambiarVista('mes')">Mes</a>
+      <a href="#" onclick="cambiarVista('anio')">Año</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="controls">
+      <button onclick="abrirFormulario()">Registrar Venta</button>
+      <select id="selector-vista" onchange="mostrarCampoFecha()">
+        <option value="dia">Día</option>
+        <option value="semana">Semana</option>
+        <option value="mes">Mes</option>
+        <option value="anio">Año</option>
+      </select>
+      <input type="date" id="fecha-dia" style="display:none">
+      <input type="week" id="fecha-semana" style="display:none">
+      <input type="month" id="fecha-mes" style="display:none">
+      <input type="number" id="fecha-anio" placeholder="Año" min="2000" max="2100" style="display:none">
+      <button id="boton-buscar" onclick="actualizarResumen()">Buscar</button>
+    </div>
+    <div class="card">
+      <h2 id="titulo">Ventas</h2>
+      <p id="cantidad">0 tickets</p>
+      <p id="total">RD$0.00</p>
+    </div>
+    <canvas id="graficoVentas" width="400" height="200"></canvas>
+    <div id="tabla-ventas"></div>
+  </div>
+
+  <div id="formulario-modal">
+    <form id="formulario" onsubmit="guardarVenta(event)">
+      <h3>Registrar Nueva Venta</h3>
+      <input type="text" id="cliente" placeholder="Nombre del Cliente" required />
+      <input type="number" id="precio" placeholder="Precio del Ticket" required min="1" />
+      <input type="datetime-local" id="fecha" required />
+      <button type="submit">Guardar Venta</button>
+    </form>
+  </div>
+
+  <script>
+    function abrirFormulario() {
+      document.getElementById("formulario-modal").style.display = "flex";
+    }
+
+    function guardarVenta(event) {
+      event.preventDefault();
+      const cliente = document.getElementById("cliente").value;
+      const precio = parseFloat(document.getElementById("precio").value);
+      const fechaInput = document.getElementById("fecha").value;
+      if (!fechaInput) return alert("Seleccione una fecha válida.");
+      const fecha = new Date(fechaInput).toISOString();
+
+      const ventas = JSON.parse(localStorage.getItem("ventas") || "[]");
+      ventas.push({ cliente, precio, fecha });
+      localStorage.setItem("ventas", JSON.stringify(ventas));
+
+      document.getElementById("formulario").reset();
+      document.getElementById("formulario-modal").style.display = "none";
+      actualizarResumen();
+    }
+
+    function mostrarCampoFecha() {
+      document.getElementById("fecha-dia").style.display = 'none';
+      document.getElementById("fecha-semana").style.display = 'none';
+      document.getElementById("fecha-mes").style.display = 'none';
+      document.getElementById("fecha-anio").style.display = 'none';
+
+      const tipo = document.getElementById("selector-vista").value;
+      if (tipo === 'dia') document.getElementById("fecha-dia").style.display = 'inline-block';
+      if (tipo === 'semana') document.getElementById("fecha-semana").style.display = 'inline-block';
+      if (tipo === 'mes') document.getElementById("fecha-mes").style.display = 'inline-block';
+      if (tipo === 'anio') document.getElementById("fecha-anio").style.display = 'inline-block';
+    }
+
+    function cambiarVista(tipo) {
+      document.getElementById("selector-vista").value = tipo;
+      mostrarCampoFecha();
+    }
+
+    function actualizarResumen() {
+      const tipo = document.getElementById("selector-vista").value;
+      const ventas = JSON.parse(localStorage.getItem("ventas") || "[]");
+
+      let seleccion;
+      if (tipo === 'dia') seleccion = document.getElementById("fecha-dia").valueAsDate;
+      if (tipo === 'semana') seleccion = document.getElementById("fecha-semana").valueAsDate;
+      if (tipo === 'mes') seleccion = new Date(document.getElementById("fecha-mes").value + "-01");
+      if (tipo === 'anio') seleccion = new Date(document.getElementById("fecha-anio").value || new Date().getFullYear(), 0, 1);
+      if (!seleccion) seleccion = new Date();
+
+      let cantidad = 0, total = 0, agrupacion = {}, ventasFiltradas = [];
+
+      ventas.forEach(v => {
+        const f = new Date(v.fecha);
+        const key = tipo === 'dia' ? f.getHours() + ":00" : tipo === 'semana' ? f.toDateString() : tipo === 'mes' ? f.getDate() + '/' + (f.getMonth()+1) : (f.getMonth()+1) + '/' + f.getFullYear();
+        const esMismoDia = f.toDateString() === seleccion.toDateString();
+        const esMismaSemana = getSemana(f) === getSemana(seleccion) && f.getFullYear() === seleccion.getFullYear();
+        const esMismoMes = f.getMonth() === seleccion.getMonth() && f.getFullYear() === seleccion.getFullYear();
+        const esMismoAnio = f.getFullYear() === seleccion.getFullYear();
+
+        if ((tipo === 'dia' && esMismoDia) || (tipo === 'semana' && esMismaSemana) || (tipo === 'mes' && esMismoMes) || (tipo === 'anio' && esMismoAnio)) {
+          cantidad++;
+          total += v.precio;
+          agrupacion[key] = (agrupacion[key] || 0) + 1;
+          if (tipo === 'dia') ventasFiltradas.push(v);
+        }
+      });
+
+      document.getElementById("titulo").textContent = `Ventas por ${tipo}`;
+      document.getElementById("cantidad").textContent = `${cantidad} tickets`;
+      document.getElementById("total").textContent = `RD$${total.toFixed(2)}`;
+
+      const ctx = document.getElementById('graficoVentas').getContext('2d');
+      if (window.chart) window.chart.destroy();
+      window.chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: Object.keys(agrupacion),
+          datasets: [{
+            label: 'Tickets vendidos',
+            data: Object.values(agrupacion),
+            backgroundColor: 'rgba(0, 46, 109, 0.8)',
+            borderRadius: 5
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: context => ` ${context.raw} tickets`
+              }
+            }
+          },
+          scales: {
+            y: { beginAtZero: true }
+          }
+        }
+      });
+
+      const tabla = document.getElementById("tabla-ventas");
+      if (tipo === 'dia' && ventasFiltradas.length > 0) {
+        let html = `<table><thead><tr><th>Cliente</th><th>Precio</th><th>Fecha</th></tr></thead><tbody>`;
+        ventasFiltradas.forEach(v => {
+          html += `<tr><td>${v.cliente}</td><td>RD$${v.precio.toFixed(2)}</td><td>${new Date(v.fecha).toLocaleString()}</td></tr>`;
+        });
+        html += `</tbody></table>`;
+        tabla.innerHTML = html;
+      } else if (tipo === 'dia') {
+        tabla.innerHTML = '<p>No hay ventas registradas para este día.</p>';
+      } else {
+        tabla.innerHTML = '<p>Seleccione una fecha y haga clic en "Buscar" para ver las ventas.</p>';
+      }
+    }
+
+    function getSemana(fecha) {
+      const primerDia = new Date(fecha.getFullYear(), 0, 1);
+      const dias = Math.floor((fecha - primerDia) / (24 * 60 * 60 * 1000));
+      return Math.ceil((fecha.getDay() + 1 + dias) / 7);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      mostrarCampoFecha();
+      actualizarResumen();
+    });
+  </script>
+</body>
+</html>

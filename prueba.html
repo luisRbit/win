@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sucursales de Caribe Tours</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    body { font-family: sans-serif; margin: 0; padding: 0; }
+    h2 { text-align: center; margin-top: 1rem; }
+    #map { height: 600px; width: 100%; margin: 1rem 0; }
+  </style>
+</head>
+<body>
+
+<h2>Mapa de Sucursales de Caribe Tours</h2>
+<div id="map"></div>
+
+<script>
+  const map = L.map('map').setView([18.7357, -70.1627], 8);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+
+  const sucursales = [
+    { nombre: "Santo Domingo - Terminal Principal", coords: [18.471860, -69.902684], direccion: "Av. 27 de Febrero esq. Leopoldo Navarro" },
+    { nombre: "Santo Domingo - Aut. de San Isidro", coords: [18.4850, -69.8360], direccion: "Autopista de San Isidro" },
+    { nombre: "Santo Domingo - Carretera Mella", coords: [18.4865, -69.8570], direccion: "Carretera Mella" },
+    { nombre: "Santo Domingo - Las Américas", coords: [18.4290, -69.6680], direccion: "Av. Las Américas" },
+    { nombre: "Santo Domingo - Puente Juan Carlos", coords: [18.4800, -69.8500], direccion: "Puente Juan Carlos" },
+    { nombre: "Santo Domingo - Kilómetro 9", coords: [18.4720, -70.0000], direccion: "Av. 27 de Febrero, Km 9" },
+    { nombre: "Santo Domingo - Caribe Pack Prados", coords: [18.4750, -69.9500], direccion: "John F. Kennedy, Los Prados" },
+    { nombre: "Santiago - Las Colinas", coords: [19.4500, -70.7000], direccion: "Av. Las Colinas" },
+    { nombre: "Puerto Plata", coords: [19.79176, -70.69807], direccion: "Calle Camino Real #52" },
+    { nombre: "La Vega", coords: [19.2222, -70.5283], direccion: "Calle Duarte" },
+    { nombre: "San Francisco de Macorís", coords: [19.3000, -70.2500], direccion: "Calle Castillo" },
+    { nombre: "Jarabacoa", coords: [19.1164, -70.6374], direccion: "Calle Independencia" },
+    { nombre: "Nagua", coords: [19.3831, -69.8479], direccion: "Calle Sánchez" },
+    { nombre: "Sosúa", coords: [19.7500, -70.5171], direccion: "Aut. Sosúa" },
+    { nombre: "Dajabón", coords: [19.5500, -71.7000], direccion: "Calle Principal" },
+    { nombre: "Barahona", coords: [18.2073, -71.1022], direccion: "Calle Peña Gómez" },
+    { nombre: "San Juan de la Maguana", coords: [18.8056, -71.2299], direccion: "Calle Independencia" },
+    { nombre: "Constanza", coords: [18.9091, -70.7422], direccion: "Centro Constanza" },
+    { nombre: "Samaná", coords: [19.2057, -69.3369], direccion: "Calle Duarte" },
+    { nombre: "Azua", coords: [18.4555, -70.7349], direccion: "Calle Fátima" },
+    { nombre: "Higüey", coords: [18.6150, -68.7122], direccion: "Av. Libertad" },
+    { nombre: "Friusa", coords: [18.6742, -68.4334], direccion: "Av. Friusa, Bávaro" },
+    // HAITÍ
+    { nombre: "Puerto Príncipe (HAITÍ)", coords: [18.5393, -72.3364], direccion: "Rue Clerueaux" },
+    { nombre: "Cabo Haitiano (HAITÍ)", coords: [19.7594, -72.2052], direccion: "Rue 294, Carenge" },
+    { nombre: "Tabarre (HAITÍ)", coords: [18.5920, -72.2934], direccion: "Rue Tabarre" }
+  ];
+
+  sucursales.forEach(sucursal => {
+    L.marker(sucursal.coords)
+      .addTo(map)
+      .bindPopup(`<strong>${sucursal.nombre}</strong><br>${sucursal.direccion}`);
+  });
+</script>
+
+</body>
+</html>

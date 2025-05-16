@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Caribe Tours | Plataforma de Venta de Tickets</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="https://caribetours.com.do/img/favicon.ico">
+  <link rel="icon" href="img/logoCaribeTours.png" />
+  <style>
+    .ticket {
+      background: white;
+      width: 350px;
+      margin: auto;
+      padding: 20px;
+      border: 2px dashed #333;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.2);
+      font-family:Verdana, Geneva, Tahoma, sans-serif;
+    }
+    .ticket h2 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .ticket p {
+      margin: 5px 0;
+    }
+    .line {
+      border-top: 1px dashed #333;
+      margin: 10px 0;
+    }
+    .ticket-footer {
+      text-align: center;
+      font-size: 0.8em;
+      color: #555;
+      margin-top: 10px;
+    }
+    .ticket-id {
+      text-align: center;
+      font-size: 0.9em;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 font-sans">
+  <!-- Encabezado -->
+  <header class="bg-white shadow-lg sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
+      <div class="flex items-center space-x-3">
+        <img src="img/logoCaribeTours.png" alt="Logo Caribe Tours" class="h-10 w-auto" />
+        <h1 class="text-3xl font-extrabold text-[#1E3297] tracking-tight">Caribe Tours</h1>
+      </div>
+      <nav class="space-x-6 text-sm font-medium">
+        <a href="Prueba Final.html" class="text-gray-700 hover:text-yellow-500 transition">Inicio</a>
+        <a href="#venta" class="text-gray-700 hover:text-yellow-500 transition">Compra</a>
+        <a href="#contacto" class="text-gray-700 hover:text-yellow-500 transition">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Sección principal -->
+  <section style="background-color: #1E3297;" class="text-white py-20 text-center">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-5xl font-extrabold mb-6">¿A dónde deseas viajar?</h2>
+      <p class="text-xl font-light mb-8">Compra tus tickets de forma rápida, segura y profesional con Caribe Tours.</p>
+      <a href="#venta" class="inline-block bg-white text-yellow-600 px-8 py-3 rounded-full font-bold text-lg hover:bg-yellow-100 transition">Comprar Ticket</a>
+    </div>
+  </section>
+
+  <!-- Sección de venta -->
+  <section id="venta" class="py-20 bg-gray-50">
+    <div class="max-w-3xl mx-auto px-6">
+      <h3 class="text-3xl font-bold mb-8 text-center">Sistema de Venta de Tickets</h3>
+      
+    </div>
+  </section>
+</body>
+</html
+    document.getElementById('ticketForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const anio = parseInt(document.querySelector('[name="anio"]').value);
+      const error = document.getElementById('errorMensaje');
+      if (anio <= 2025) {
+        error.classList.remove('hidden');
+        return;
+      }
+      error.classList.add('hidden');
+
+      const destino = document.querySelector('[name="destino"]').value;
+      const fecha = document.querySelector('[name="fecha"]').value;
+      const tarjeta = document.querySelector('[name="tarjeta"]').value;
+      const maskedCard = '**** **** **** ' + tarjeta.slice(-4);
+      const hoy = new Date();
+      const id = `${hoy.getFullYear()}${(hoy.getMonth()+1).toString().padStart(2,'0')}${hoy.getDate().toString().padStart(2,'0')}-` + Math.floor(Math.random()*10000).toString().padStart(4,'0');
+
+
+      this.reset();
+    });
+  </script>
+
+  <script>
+  document.getElementById('formularioPago').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const nombre = document.getElementById('nombre').value.trim();
+    const origen = document.getElementById('origen').value;
+    const destino = document.getElementById('destino').value;
+    const hora = document.getElementById('hora').value;
+    const tarjeta = document.getElementById('tarjeta').value;
+    const vencimiento = document.getElementById('vencimiento').value;
+    const cvv = document.getElementById('cvv').value;
+
+    const anio = parseInt(vencimiento.split('-')[0]);
+    if (anio <= 2025) {
+      alert('El año de vencimiento debe ser posterior a 2025');
+      return;
+    }
+
+    const hoy = new Date();
+    const id = `${hoy.getFullYear()}${(hoy.getMonth()+1).toString().padStart(2,'0')}${hoy.getDate().toString().padStart(2,'0')}-` + Math.floor(Math.random()*10000).toString().padStart(4,'0');
+    const masked = '**** **** **** ' + tarjeta.slice(-4);
+
+    const ticketHTML = `
+      <div class='ticket'>
+        <div style='text-align:center; margin-bottom:10px;'>
+          <img src='https://caribetours.com.do/img/logo.png' alt='Logo' style='width:120px;'>
+        </div>
+        <h2>Caribe Tours</h2>
+        <div class='ticket-id'>Ticket N.º: ${id}</div>
+        <p><strong>Pasajero:</strong> ${nombre}</p>
+        <p><strong>Desde:</strong> ${origen}</p>
+        <p><strong>Hasta:</strong> ${destino}</p>
+        <p><strong>Asiento:</strong> 15B</p>
+        <p><strong>Fecha:</strong> ${hoy.toLocaleDateString('es-DO')}</p>
+        <p><strong>Hora de salida:</strong> ${hora}</p>
+        <div class='line'></div>
+        <p><strong>Precio:</strong> RD$ 500.00</p>
+        <p><strong>Forma de pago:</strong> ${masked}</p>
+        <div class='line'></div>
+        <div class='ticket-footer'>Gracias por viajar con Caribe Tours<br>www.caribetours.com.do</div>
+      </div>
+      <button onclick='window.print()' style='display:block; width:200px; margin:20px auto; padding:10px; background-color:#007bff; color:white; border:none; border-radius:8px; font-weight:bold; cursor:pointer;'>🖨️ Imprimir Ticket</button>
+    `;
+
+    const nuevaVentana = window.open('', '_blank');
+    nuevaVentana.document.write(`<html><head><title>Ticket</title></head><body>${ticketHTML}</body></html>`);
+    nuevaVentana.document.close();
+
+    this.reset();
+  });
+</script>
+
+<style>
+    body {
+      background-color: #f4f4f4;
+      font-family:Verdana, Geneva, Tahoma, sans-serif;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .error {
+      color: red;
+      font-size: 0.9em;
+      margin-top: -10px;
+      margin-bottom: 10px;
+      display: none;
+    }
+
+    button {
+      width: 100%;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .ticket {
+      display: none;
+      background: white;
+      width: 350px;
+      margin: 30px auto;
+      padding: 20px;
+      border: 2px dashed #333;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.2);
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .logo img {
+      width: 120px;
+    }
+
+    .ticket h2 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .ticket p {
+      margin: 5px 0;
+    }
+
+    .line {
+      border-top: 1px dashed #333;
+      margin: 10px 0;
+    }
+
+    .ticket-footer {
+      text-align: center;
+      font-size: 0.8em;
+      color: #555;
+      margin-top: 10px;
+    }
+
+    .ticket-id {
+      text-align: center;
+      font-size: 0.9em;
+      margin-bottom: 10px;
+    }
+
+    .print-btn {
+      display: block;
+      width: 200px;
+      margin: 20px auto;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .print-btn:hover {
+      background-color: #0056b3;
+    }
+
+    @media print {
+      .container, .print-btn {
+        display: none;
+      }
+
+      .ticket {
+        display: block !important;
+        margin: 0;
+        border: none;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+    <img src="img/logoCaribeTours.png" alt="Logo de la empresa" />
+  <h2>Pago con Tarjeta</h2>
+
+  <label for="nombre">Nombre del pasajero:</label>
+  <input type="text" id="nombre">
+  <div id="error-nombre" class="error">Nombre obligatorio.</div>
+
+  <label for="origen">Desde:</label>
+  <select id="origen">
+    <option value="">-- Seleccione --</option>
+    <option>Santo Domingo</option>
+    <option>Santiago</option>
+    <option>Puerto Plata</option>
+    <option>La Vega</option>
+  </select>
+  <div id="error-origen" class="error">Seleccione un origen.</div>
+
+  <label for="destino">Hasta:</label>
+  <select id="destino">
+    <option value="">-- Seleccione --</option>
+    <option>Santiago</option>
+    <option>Santo Domingo</option>
+    <option>Puerto Plata</option>
+    <option>La Vega</option>
+  </select>
+  <div id="error-origen" class="error">Hora programada.</div>
+  <div>
+    <label class="block font-medium">Hora programada</label>
+    <select id="hora" class="w-full p-2 border rounded" required>
+      <option value="">-- Seleccione --</option>
+      <option>06:00 AM</option>
+      <option>08:30 AM</option>
+      <option>12:00 PM</option>
+      <option>03:00 PM</option>
+      <option>06:00 PM</option>
+      <option>08:00 PM</option>
+    </select>
+  </div>
+  <div id="error-destino" class="error">Seleccione un destino diferente al origen.</div>
+
+  <label for="tarjeta">Número de tarjeta:</label>
+  <input type="text" id="tarjeta" maxlength="16" placeholder="**** **** **** ****">
+  <div id="error-tarjeta" class="error">Tarjeta inválida.</div>
+
+  <label for="vencimiento">Fecha de vencimiento:</label>
+  <input type="month" id="vencimiento">
+  <div id="error-vencimiento" class="error">Fecha de vencimiento requerida.</div>
+
+  <label for="cvv">CVV:</label>
+  <input type="text" id="cvv" maxlength="3" placeholder="123">
+  <div id="error-cvv" class="error">CVV requerido.</div>
+
+  <button onclick="generarTicket()">Pagar y Generar Ticket</button>
+  <script>
+    function generarTicket() {
+      const nombre = document.getElementById('nombre').value.trim();
+      const origen = document.getElementById('origen').value;
+      const destino = document.getElementById('destino').value;
+      const hora = document.getElementById('hora').value;
+      const tarjeta = document.getElementById('tarjeta').value.trim();
+      const vencimiento = document.getElementById('vencimiento').value;
+      const cvv = document.getElementById('cvv').value.trim();
+  
+      if (!nombre || !origen || !destino || origen === destino || !tarjeta || !vencimiento || !cvv) {
+        alert('Por favor complete todos los campos correctamente.');
+        return;
+      }
+  
+      const hoy = new Date();
+      const id = `${hoy.getFullYear()}${(hoy.getMonth()+1).toString().padStart(2,'0')}${hoy.getDate().toString().padStart(2,'0')}-` +
+                 Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+  
+      // Mostrar datos en el ticket
+      document.getElementById('ticket-id').textContent = id;
+      document.getElementById('ticket-nombre').textContent = nombre;
+      document.getElementById('ticket-origen').textContent = origen;
+      document.getElementById('ticket-destino').textContent = destino;
+      document.getElementById('ticket-fecha').textContent = hoy.toLocaleDateString('es-DO');
+      document.getElementById('ticket-hora').textContent = hora;
+      document.getElementById('ticket').style.display = 'block';
+      document.getElementById('btn-imprimir').style.display = 'block';
+  
+      // Guardar venta en localStorage
+      const venta = {
+        id,
+        nombre,
+        origen,
+        destino,
+        hora,
+        fecha: hoy.toLocaleDateString('es-DO'),
+        precio: 500,
+        formaPago: 'Tarjeta',
+        timestamp: hoy.toISOString()
+      };
+  
+      let ventas = JSON.parse(localStorage.getItem('ventas')) || [];
+      ventas.push(venta);
+      localStorage.setItem('ventas', JSON.stringify(ventas));
+  
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+  </script>
+</div>
+
+<!-- Fragmento del ticket -->
+<div class="ticket" id="ticket">
+  <div class="logo">
+    <img src="img/logoCaribeTours.png" alt="Logo de la empresa" />
+  </div>
+
+  <div class="ticket-id">
+    Ticket N.º: <span id="ticket-id">20250509-0001</span>
+  </div>
+
+  <p><strong>Pasajero:</strong> <span id="ticket-nombre"></span></p>
+  <p><strong>Desde:</strong> <span id="ticket-origen"></span></p>
+  <p><strong>Hasta:</strong> <span id="ticket-destino"></span></p>
+  <p><strong>Asiento:</strong> 15B</p>
+  <p><strong>Fecha:</strong> <span id="ticket-fecha"></span></p>
+  <p><strong>Hora de salida:</strong> <span id="ticket-hora"></span></p>
+
+  <div class="line"></div>
+
+  <p><strong>Precio:</strong> RD$ 500.00</p>
+  <p><strong>Forma de pago:</strong> Tarjeta</p>
+
+  <div class="line"></div>
+
+  <div class="ticket-footer">
+    Gracias por viajar con Caribe Tours<br />
+    www.caribetours.com.do
+  </div>
+</div>
+
+<button class="print-btn" id="btn-imprimir" style="display:none;" onclick="window.print()">🖨️ Imprimir Ticket</button>
+
+<!-- Script que genera el ticket -->
+<script>
+  function validarTarjeta(numero) {
+    numero = numero.replace(/\s+/g, '');
+    let sum = 0;
+    let shouldDouble = false;
+
+    for (let i = numero.length - 1; i >= 0; i--) {
+      let digit = parseInt(numero.charAt(i));
+      if (shouldDouble) {
+        digit *= 2;
+        if (digit > 9) digit -= 9;
+      }
+      sum += digit;
+      shouldDouble = !shouldDouble;
+    }
+    return sum % 10 === 0;
+  }
+
+  function mostrarError(id, mostrar) {
+    document.getElementById(id).style.display = mostrar ? 'block' : 'none';
+  }
+
+  function generarTicket() {
+    const nombre = document.getElementById('nombre').value.trim();
+    const origen = document.getElementById('origen').value;
+    const destino = document.getElementById('destino').value;
+    const hora = document.getElementById('hora').value;
+    const tarjeta = document.getElementById('tarjeta').value.trim();
+    const vencimiento = document.getElementById('vencimiento').value;
+    const cvv = document.getElementById('cvv').value.trim();
+
+    let errores = false;
+
+    mostrarError('error-nombre', !nombre);
+    mostrarError('error-origen', !origen);
+    mostrarError('error-destino', !destino || destino === origen);
+    mostrarError('error-tarjeta', !validarTarjeta(tarjeta));
+    mostrarError('error-vencimiento', !vencimiento);
+    mostrarError('error-cvv', !cvv || cvv.length < 3);
+
+    if (!nombre || !origen || !destino || destino === origen || 
+        !validarTarjeta(tarjeta) || !vencimiento || !cvv || cvv.length < 3) {
+      return;
+    }
+
+    const hoy = new Date();
+    const id = `${hoy.getFullYear()}${(hoy.getMonth()+1).toString().padStart(2,'0')}${hoy.getDate().toString().padStart(2,'0')}-` + Math.floor(Math.random()*10000).toString().padStart(4,'0');
+
+    document.getElementById('ticket-id').textContent = id;
+    document.getElementById('ticket-nombre').textContent = nombre;
+    document.getElementById('ticket-origen').textContent = origen;
+    document.getElementById('ticket-destino').textContent = destino;
+    document.getElementById('ticket-fecha').textContent = hoy.toLocaleDateString('es-DO');
+    document.getElementById('ticket-hora').textContent = hora;
+
+    document.getElementById('ticket').style.display = 'block';
+    document.getElementById('btn-imprimir').style.display = 'block';
+
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+  }
+</script>
+
+<!-- Estilos adicionales -->
+<style>
+  .ticket {
+    display: none;
+    background: white;
+    width: 350px;
+    margin: 30px auto;
+    padding: 20px;
+    border: 2px dashed #333;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.2);
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+  }
+
+  .logo {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .logo img {
+    width: 120px;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .ticket h2 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .ticket p {
+    margin: 5px 0;
+  }
+
+  .line {
+    border-top: 1px dashed #333;
+    margin: 10px 0;
+  }
+
+  .ticket-footer {
+    text-align: center;
+    font-size: 0.8em;
+    color: #555;
+    margin-top: 10px;
+  }
+
+  .ticket-id {
+    text-align: center;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+  }
+
+  .print-btn {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .print-btn:hover {
+    background-color: #0056b3;
+  }
+
+  @media print {
+    .container, .print-btn {
+      display: none;
+    }
+
+    .ticket {
+      display: block !important;
+      margin: 0 auto;
+      border: none;
+      box-shadow: none;
+    }
+
+    
+
+    body {
+      background: white;
+    }
+  }
+</style>
+</body>
+</html>

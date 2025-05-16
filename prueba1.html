@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mapa de Sucursales - Caribe Tours</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <style>
+    #map { height: 600px; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+
+  <h2>Sucursales de Caribe Tours</h2>
+  <div id="map"></div>
+
+  <script>
+    const map = L.map('map').setView([18.7357, -70.1627], 8);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Lista de sucursales con coordenadas, altitud y dirección
+    const sucursales = [
+      {
+        nombre: "La Central Caribe Tours Santo Domingo",
+        coords: [18.475863, -69.907393],
+        direccion: "Av. 27 de Febrero, Caribe Tours",
+        altitud: 32
+      },
+      {
+        nombre: "Sucursal Santiago",
+        coords: [19.4517, -70.6970],
+        direccion: "Av. Estrella Sadhalá, Santiago",
+        altitud: 155
+      },
+      {
+        nombre: "Sucursal Puerto Plata",
+        coords: [19.7872, -70.6884],
+        direccion: "Av. Manolo Tavárez Justo",
+        altitud: 44
+      }
+    ];
+
+    // Agregar marcadores con altitud y latitud en el popup
+    sucursales.forEach(sucursal => {
+      const lat = sucursal.coords[0];
+      const lon = sucursal.coords[1];
+      const popupContent = `
+        <strong>${sucursal.nombre}</strong><br>
+        ${sucursal.direccion}<br>
+        Latitud: ${lat.toFixed(5)}<br>
+        Longitud: ${lon.toFixed(5)}<br>
+        Altitud: ${sucursal.altitud} m
+      `;
+      L.marker(sucursal.coords)
+        .addTo(map)
+        .bindPopup(popupContent);
+    });
+  </script>
+
+
+
+</body>
+</html>

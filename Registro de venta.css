@@ -1,0 +1,72 @@
+:root {
+    --azul-caribe: #002e6d;
+    --amarillo-caribe: #ffcc00;
+    --blanco: #ffffff;
+    --gris: #f2f2f2;
+  }
+  
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: var(--gris);
+  }
+  
+  .navbar {
+    background-color: var(--azul-caribe);
+    color: var(--blanco);
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo {
+    height: 50px;
+    margin-right: 15px;
+  }
+  
+  .navbar h1 {
+    font-size: 24px;
+    margin: 0;
+  }
+  
+  .dashboard {
+    padding: 30px;
+    text-align: center;
+  }
+  
+  button {
+    background-color: var(--amarillo-caribe);
+    color: var(--azul-caribe);
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+  
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  
+  .card {
+    background-color: var(--blanco);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+  
+  .card h2 {
+    margin-top: 0;
+    color: var(--azul-caribe);
+  }
+  
+  .card p {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 10px 0 0;
+    color: var(--amarillo-caribe);
+  }
